@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "employe")
@@ -20,5 +19,10 @@ public class Employe {
     private Long idEmploye;
     private String nom;
     private String prenom;
+    @Enumerated(EnumType.STRING)
     private RoleEmploye role;
+
+    @ManyToOne
+    @JoinColumn(name = "id_agence")
+    private Agence agence;
 }

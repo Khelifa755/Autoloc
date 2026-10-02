@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Client")
+@Table(name = "Reservation")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,7 +22,20 @@ public class Reservation {
     private Long idReservation;
     private LocalDate dateDebut;
     private LocalDate dateFin;
+    @Enumerated(EnumType.STRING)
     private StatutReservation statut;
+
+    @ManyToOne
+    @JoinColumn(name = "id_client")
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "id_vehicule")
+    private Vehicule vehicule;
+
+    @OneToOne
+    @JoinColumn(name = "id_contrat")
+    private Contrat contrat;
 
 }
 
